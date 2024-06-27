@@ -9,9 +9,10 @@ import SwiftUI
 
 @main
 struct SwiftUIKSSAssignmentApp: App {
+    @State var loginViewModel = LoginViewModel()
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView().environment(\.loginViewModel, loginViewModel)
         }
     }
 }

@@ -13,10 +13,24 @@ class LoginViewModel {
      var isLoggedIn: Bool = false
 }
 
+struct LoginViewModelKey: EnvironmentKey {
+    static var defaultValue: LoginViewModel = LoginViewModel()
+    
+}
+
+extension EnvironmentValues {
+    var loginViewModel: LoginViewModel {
+        get { self[LoginViewModelKey.self] }
+        set { self[LoginViewModelKey.self] = newValue }
+    }
+}
+
+
 struct LoginView: View {
     @State var email: String = ""
     @State var password: String = ""
-    @Environment(LoginViewModel.self) var loginViewModel: LoginViewModel
+    
+    @Environment(\.loginViewModel) var loginViewModel: LoginViewModel
     var body: some View {
         Spacer()
         VStack(alignment: .center) {
@@ -45,13 +59,12 @@ struct LoginView: View {
                     .tint(.black)
                     
                     Button("Forgot Password?") {
+                       
                         print("Forgot Password")
                     }
                 }
                 Spacer()
-                
-            
-            }.frame(width: .infinity)
+            }
                 
         }
         .padding(.all, 30.0)

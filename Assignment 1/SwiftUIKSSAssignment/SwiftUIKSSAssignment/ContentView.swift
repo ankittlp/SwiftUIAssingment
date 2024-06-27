@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct ContentView: View {
-    @Environment(LoginViewModel.self) var loginViewModel: LoginViewModel
+    @Environment(\.loginViewModel) var loginViewModel: LoginViewModel
     var body: some View {
         
         if loginViewModel.isLoggedIn {
             NavigationStack {
-                AssignmentView()
+                AssignmentListView()
                     .navigationTitle("Assignments")
                     .navigationBarTitleDisplayMode(.large)
             }
